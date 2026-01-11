@@ -3,6 +3,7 @@ import SpamForm from "../components/SpamForm";
 import ResultCard from "../components/ResultCard";
 import { predictSpam } from "../api/spamApi";
 import type { SpamResponse } from "../types/spam";
+import ConfidenceChart from "../components/ConfidenceChart";
 
 const Home: React.FC = () => {
   const [result, setResult] = useState<SpamResponse | null>(null);
@@ -28,7 +29,12 @@ const Home: React.FC = () => {
     <div className="container">
       <SpamForm onSubmit={handleAnalyze} loading={loading} />
       {error && <p className="error">{error}</p>}
-      <ResultCard result={result} />
+      {result && (
+        <>
+          <ResultCard result={result} />
+          <ConfidenceChart result={result} />
+        </>
+      )}
     </div>
   );
 };
