@@ -1,1 +1,40 @@
+# Visual Studio caches and user files
 .vs/
+*.user
+*.suo
+*.userosscache
+
+# Build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+publish/
+
+# IDE directories
+.idea/
+.vscode/
+
+# Node / Vite
+client/node_modules/
+client/dist/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet / packages
+*.nupkg
+packages/
