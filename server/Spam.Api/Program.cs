@@ -8,7 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
 
 // ML Service
 builder.Services.AddScoped<SpamPredictionService>();
@@ -19,8 +25,16 @@ var app = builder.Build();
 if (!File.Exists("ML/spam-model.zip"))
 {
     Directory.CreateDirectory("ML");
-    var trainer = new SpamTrainer();
-    trainer.Train();
+    try
+    {
+        var trainer = new SpamTrainer();
+        trainer.Train();
+    }
+    catch (Exception ex)
+    {
+        Console.Error.WriteLine($"Error training model on startup: {ex}");
+        throw;
+    }
 }
 
 // Configure the HTTP request pipeline.
@@ -41,12 +55,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors();
 
-app.UseCors(policy => 
-    policy.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
+app.UseAuthorization();
 
 app.MapControllers();
 

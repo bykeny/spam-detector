@@ -8,10 +8,18 @@ namespace Spam.Api.ML
 
         public SpamPredictionService()
         {
-            var mlContext = new MLContext();
-            var model = mlContext.Model.Load("ML/spam-model.zip", out _);
-            _engine = mlContext.Model
-                .CreatePredictionEngine<SpamInput, SpamOutput>(model);
+                try
+                {
+                    var mlContext = new MLContext();
+                    var model = mlContext.Model.Load("ML/spam-model.zip", out _);
+                    _engine = mlContext.Model
+                        .CreatePredictionEngine<SpamInput, SpamOutput>(model);
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Error loading ML model: {ex}");
+                    throw;
+                }
         }
 
         public SpamOutput Predict(string text)
