@@ -1,0 +1,72 @@
+# Visual Studio / .NET
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+out/
+
+# Publish results
+publish/
+*.Publish.xml
+
+# NuGet
+*.nupkg
+packages/
+.project.assets.json
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# User secrets (when using .NET user-secrets)
+secrets.json
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
+
+# Temporary files
+*~
+*.tmp
+
+# Node (if present)
+node_modules/
+
+# JetBrains Rider caches
+.idea/
+*.sln.iml
+
+# ML artifacts and generated models
+Models/
+*.zip
+
+# Optional: dataset files that should not be committed (uncomment if you want to ignore data)
+# Data/
+# Data/*.csv
+
+# Ignore deployment credentials and tooling
+.env
+*.publishsettings
+
+# Other tooling
+.vscode/
+
+# End of file

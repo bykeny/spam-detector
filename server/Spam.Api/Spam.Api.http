@@ -1,0 +1,6 @@
+@Spam.Api_HostAddress = http://localhost:5240
+
+GET {{Spam.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
